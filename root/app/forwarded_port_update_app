@@ -1,17 +1,13 @@
 # shellcheck shell=bash
-until pidof rtorrent > /dev/null; do   
+until pidof slskd > /dev/null; do   
     sleep 1
 done
-old_port_range=$(grep network.port_range.set "${CONFIG_DIR}/rtorrent.rc" | awk -F '=' '{print $2}' | xargs)
-if [[ "${old_port_range}" != "${port}-${port}" ]]; then
-    sed -i "s/network.port_range.set.*/network.port_range.set = ${port}-${port}/g" "${CONFIG_DIR}/rtorrent.rc"
-    sed -i "s/network.port_random.set.*/network.port_random.set = no/g" "${CONFIG_DIR}/rtorrent.rc"
-    log_inf "[RTORRENT] Shutting down to restart with forwarded port [${port}]."
-    until xmlrpc localhost:5000 system.client_version > /dev/null; do
-        log_wrn "[RTORRENT] Application not ready to receive xml-rpc commands!"
-        sleep 1
-    done
-    xmlrpc localhost:5000 system.shutdown.normal > /dev/null
+pid=$(pidof slskd)
+old_port=$(yq '.soulseek.listen_port' "${CONFIG_DIR}/slskd.yml")
+if [[ "${old_port}" != "${port}" ]]; then
+    yq -i '.soulseek.listen_port = "'"${port}"'"' "${CONFIG_DIR}/slskd.yml"
+    log_inf "[SLSKD] Shutting down to restart with forwarded port [${port}]."
+    kill "${pid}"
 else
-    log_inf "[RTORRENT] Nothing to do, forwarded port hasn't changed."
+    log_inf "[SLSKD] Nothing to do, forwarded port hasn't changed."
 fi
