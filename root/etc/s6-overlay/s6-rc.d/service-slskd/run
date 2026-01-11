@@ -15,5 +15,11 @@ readarray -td, PORTS <<< "${WEBUI_PORTS}"
 HTTP_PORT=${PORTS[0]%%/*}
 HTTPS_PORT=${PORTS[1]%%/*}
 
+if [[ "${VPN_AUTO_PORT_FORWARD}" != "false" ]] && yq -re '.soulseek.listen_port' "${CONFIG_DIR}/slskd.yml" 2> /dev/null; then
+    until [[ -f "${CONFIG_DIR}/wireguard/forwarded_port_updated" ]]; do   
+        sleep 1
+    done
+fi
+
 # shellcheck disable=SC2086
 exec s6-setuidgid hotio "${APP_DIR}/slskd" --app-dir "${CONFIG_DIR}" --http-port "${HTTP_PORT}" --https-port "${HTTPS_PORT}"
