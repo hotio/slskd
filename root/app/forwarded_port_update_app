@@ -1,16 +1,6 @@
 # shellcheck shell=bash
 
-until old_port=$(yq -re '.soulseek.listen_port' "${CONFIG_DIR}/slskd.yml" 2> /dev/null); do   
-    sleep 10
-done
-
-if [[ "${old_port}" != "${port}" ]]; then
-    log_inf "[SLSKD] Updating forwarded port to [${port}]."
-    yq -i '.soulseek.listen_port = "'"${port}"'"' "${CONFIG_DIR}/slskd.yml"
-    if pid=$(pidof slskd); then
-        log_inf "[SLSKD] Shutting down to restart with forwarded port [${port}]."
-        kill "${pid}"
-    fi
-else
-    log_inf "[SLSKD] Nothing to do, forwarded port hasn't changed."
+if pid=$(pidof "slskd"); then
+    log_inf "[SLSKD] Shutting down to restart with forwarded port [${port}]."
+    kill "${pid}"
 fi
