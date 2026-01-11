@@ -1,4 +1,5 @@
 # shellcheck shell=bash
+
 until old_port=$(yq -re '.soulseek.listen_port' "${CONFIG_DIR}/slskd.yml" 2> /dev/null); do   
     sleep 10
 done
@@ -13,5 +14,3 @@ if [[ "${old_port}" != "${port}" ]]; then
 else
     log_inf "[SLSKD] Nothing to do, forwarded port hasn't changed."
 fi
-
-touch "${CONFIG_DIR}/wireguard/forwarded_port_updated"
