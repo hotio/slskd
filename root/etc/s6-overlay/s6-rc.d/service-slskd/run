@@ -24,9 +24,9 @@ if [[ "${VPN_ENABLED}" == "true" ]] && [[ "${VPN_AUTO_PORT_FORWARD}" != "false" 
         sleep 1
     done
     forwarded_port=$(sed -n '1p' "${CONFIG_DIR}/wireguard/forwarded_port_validated")
-    ARGS="--slsk-listen-port ${forwarded_port}"
+    SLSK_LISTEN_PORT="--slsk-listen-port ${forwarded_port}"
     log_inf "[SLSKD] Starting with forwarded port [${forwarded_port}]."
 fi
 
 # shellcheck disable=SC2086
-exec s6-setuidgid hotio "${APP_DIR}/slskd" --app-dir "${CONFIG_DIR}" --http-port "${HTTP_PORT}" --https-port "${HTTPS_PORT}" ${ARGS}
+exec s6-setuidgid hotio "${APP_DIR}/slskd" --app-dir "${CONFIG_DIR}" --http-port "${HTTP_PORT}" --https-port "${HTTPS_PORT}" ${SLSK_LISTEN_PORT}
