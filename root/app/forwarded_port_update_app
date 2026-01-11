@@ -6,7 +6,7 @@ done
 if [[ "${old_port}" != "${port}" ]]; then
     log_inf "[SLSKD] Updating forwarded port to [${port}]."
     yq -i '.soulseek.listen_port = "'"${port}"'"' "${CONFIG_DIR}/slskd.yml"
-    if pid=$(pidof slskd) > /dev/null; then
+    if pid=$(pidof slskd); then
         log_inf "[SLSKD] Shutting down to restart with forwarded port [${port}]."
         kill "${pid}"
     fi
