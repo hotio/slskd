@@ -11,5 +11,9 @@ export DOTNET_gcConcurrent=1
 export DOTNET_GCHeapHardLimit=0x80000000
 export DOTNET_GCConserveMemory=9
 
+readarray -td, PORTS <<< "${WEBUI_PORTS}"
+HTTP_PORT=${PORTS[0]%%/*}
+HTTPS_PORT=${PORTS[1]%%/*}
+
 # shellcheck disable=SC2086
-exec s6-setuidgid hotio "${APP_DIR}/slskd" --app-dir "${CONFIG_DIR}" --http-port "${WEBUI_PORTS%%/*}"
+exec s6-setuidgid hotio "${APP_DIR}/slskd" --app-dir "${CONFIG_DIR}" --http-port "${HTTP_PORT}" --https-port "${HTTPS_PORT}"
