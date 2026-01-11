@@ -6,7 +6,7 @@ EXPOSE 5030 5031
 ARG IMAGE_STATS
 ENV IMAGE_STATS=${IMAGE_STATS} WEBUI_PORTS="5030/tcp,5031/tcp"
 
-RUN apk add --no-cache yq icu-libs
+RUN apk add --no-cache icu-libs
 
 ARG VERSION
 RUN zipfile="/tmp/app.zip" && curl -fsSL -o "${zipfile}" "https://github.com/slskd/slskd/releases/download/${VERSION}/slskd-${VERSION}-linux-musl-arm64.zip" && unzip -q "${zipfile}" -d "${APP_DIR}" && rm "${zipfile}" && \
