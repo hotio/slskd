@@ -12,4 +12,4 @@ done <<< "$(jq -r 'to_entries[] | [(.key | ascii_upcase),.value] | join("=")' < 
 
 image=$(basename "$(git rev-parse --show-toplevel)")
 
-docker build --secret id=github_token,env=GITHUB_TOKEN --platform "linux/${1}" -f "./linux-${1}.Dockerfile" -t "${image}-${1}" "${opts[@]}" .
+docker build --secret id=no_perms_token,env=NO_PERMS_TOKEN --platform "linux/${1}" -f "./linux-${1}.Dockerfile" -t "${image}-${1}" "${opts[@]}" .
