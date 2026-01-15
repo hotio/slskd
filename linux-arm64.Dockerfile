@@ -8,8 +8,9 @@ ENV IMAGE_STATS=${IMAGE_STATS} WEBUI_PORTS="5030/tcp,5031/tcp"
 
 RUN apk add --no-cache icu-libs
 
-ARG VERSION
-RUN zipfile="/tmp/app.zip" && curl -fsSL -o "${zipfile}" "https://github.com/slskd/slskd/releases/download/${VERSION}/slskd-${VERSION}-linux-musl-arm64.zip" && unzip -q "${zipfile}" -d "${APP_DIR}" && rm "${zipfile}" && \
+ARG VERSION_URL_ARM64
+RUN --mount=type=secret,id=github_token,env=GITHUB_TOKEN \
+    zipfile="/tmp/app.zip" && curl -fsSL -o "${zipfile}" -H "Authorization: Bearer ${GITHUB_TOKEN}" "${VERSION_URL_ARM64}" && unzip -q "${zipfile}" -d "${APP_DIR}" && rm "${zipfile}" && \
     chmod -R u=rwX,go=rX "${APP_DIR}" && \
     chmod +x "${APP_DIR}/slskd"
 
