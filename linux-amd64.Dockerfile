@@ -10,7 +10,8 @@ RUN apk add --no-cache icu-libs
 
 ARG VERSION_URL_AMD64
 RUN --mount=type=secret,id=token \
-    export TOKEN=$(cat /run/secrets/token) \
+    export TOKEN=$(cat /run/secrets/token) && \
+    echo "${TOKEN}" | wc -m && \
     zipfile="/tmp/app.zip" && curl -fsSL -o "${zipfile}" -H "Authorization: Bearer ${TOKEN}" "${VERSION_URL_AMD64}" && unzip -q "${zipfile}" -d "${APP_DIR}" && rm "${zipfile}" && \
     chmod -R u=rwX,go=rX "${APP_DIR}" && \
     chmod +x "${APP_DIR}/slskd"
