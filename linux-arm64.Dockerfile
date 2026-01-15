@@ -9,7 +9,7 @@ ENV IMAGE_STATS=${IMAGE_STATS} WEBUI_PORTS="5030/tcp,5031/tcp"
 RUN apk add --no-cache icu-libs
 
 ARG VERSION_URL_ARM64
-RUN --mount=type=secret,id=token,env=TOKEN \
+RUN --mount=type=secret,id=GIT_AUTH_TOKEN,env=TOKEN \
     zipfile="/tmp/app.zip" && curl -fsSL -H "Authorization: Bearer ${TOKEN}" -o "${zipfile}" "${VERSION_URL_ARM64}" && unzip -q "${zipfile}" -d "${APP_DIR}" && rm "${zipfile}" && \
     chmod -R u=rwX,go=rX "${APP_DIR}" && \
     chmod +x "${APP_DIR}/slskd"
