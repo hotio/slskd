@@ -1,6 +1,7 @@
 {
   "description": "Releases",
   "latest": true,
+  "license": "AGPL-3.0",
   "test_amd64": true,
   "test_arm64": true,
   "test_url": "http://localhost:5030",
