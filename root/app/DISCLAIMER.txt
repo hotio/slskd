@@ -1,0 +1,1 @@
+The application "slskd" is released under the license GNU AGPL-3.0. The license file is bundled alongside the object code or can be read at https://github.com/slskd/slskd/blob/master/LICENSE. The source code can be obtained from https://github.com/slskd/slskd. No modifications have been made to the source code, the application is bundled as it was released by the original author.
