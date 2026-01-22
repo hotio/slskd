@@ -6,7 +6,7 @@
   "test_url": "http://localhost:5030",
   "upstream_image": "ghcr.io/hotio/base",
   "upstream_tag": "alpinevpn",
-  "upstream_tag_sha": "alpinevpn-5648cae",
+  "upstream_tag_sha": "alpinevpn-3f254df",
   "version": "0.24.3.65534+337fe1c7",
   "version_url_amd64": "https://api.github.com/repos/slskd/slskd/actions/artifacts/5184397353/zip",
   "version_url_arm64": "https://api.github.com/repos/slskd/slskd/actions/artifacts/5184396747/zip"
