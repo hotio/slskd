@@ -1,6 +1,10 @@
 # shellcheck shell=bash
 
+rm -f "${CONFIG_DIR}/wireguard/forwarded_port_validated"
+
 if pid=$(pidof "slskd"); then
     log_inf "[SLSKD] Shutting down to restart with forwarded port [${port}]."
     kill "${pid}"
 fi
+
+echo "${port}" > "${CONFIG_DIR}/wireguard/forwarded_port_validated"
