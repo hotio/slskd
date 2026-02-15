@@ -7,7 +7,7 @@
   "upstream_image": "ghcr.io/hotio/base",
   "upstream_tag": "alpinevpn",
   "upstream_tag_sha": "alpinevpn-e5bbee4",
-  "version": "0.24.3.65534+52957f1c",
-  "version_url_amd64": "https://api.github.com/repos/slskd/slskd/actions/artifacts/5514718775/zip",
-  "version_url_arm64": "https://api.github.com/repos/slskd/slskd/actions/artifacts/5514718909/zip"
+  "version": "0.24.3.65534+8ab17908",
+  "version_url_amd64": "https://api.github.com/repos/slskd/slskd/actions/artifacts/5517430381/zip",
+  "version_url_arm64": "https://api.github.com/repos/slskd/slskd/actions/artifacts/5517430396/zip"
 }
