@@ -1,7 +1,6 @@
 {
   "description": "Canary releases",
   "latest": false,
-  "packages_hash": "302cfad0dc11dd4733acc16506fd2e48cc3bd2dd",
   "test_amd64": true,
   "test_arm64": true,
   "test_url": "http://localhost:5030",
