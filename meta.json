@@ -1,12 +1,12 @@
 {
   "description": "Releases",
   "latest": true,
-  "packages_hash": "302cfad0dc11dd4733acc16506fd2e48cc3bd2dd",
+  "packages_hash": "a6d11c4339fda97abfd28378a8df95fdfe191463",
   "test_amd64": true,
   "test_arm64": true,
   "test_url": "http://localhost:5030",
   "upstream_image": "ghcr.io/hotio/base",
   "upstream_tag": "alpinevpn",
-  "upstream_tag_sha": "alpinevpn-e6491e4",
+  "upstream_tag_sha": "alpinevpn-7984fff",
   "version": "0.25.1"
 }
